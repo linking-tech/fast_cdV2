@@ -31,6 +31,8 @@
 
 ### 1\. Data Generation (`generate_data_IK.py`)
 
+我们使用mujuco中设置的场景作为模拟场景来训练模型，如下图：
+![simulation_scene](./model/universal_robots_ur10e/collision_scene.png)
 为了训练高精度的 SDF 模型，数据质量至关重要。本项目采用 **混合采样策略**：
 
   * **全局随机采样 (Global Random):** 覆盖整个关节空间，捕捉远距离安全区域。
@@ -128,8 +130,13 @@ python infer_v2.py
 ### 1\. Accuracy Analysis
 
   * **ROC Curve:** AUC 极高，证明模型能完美区分碰撞与安全状态。
+  ![ROC Curve](./plots/roc_curve.png)
   * **Error Distribution:** 绝大多数误差集中在 $10^{-3}$ 级别。
+  ![Error Distribution](./plots/abs_error_histogram.png)
   * **Trajectory Error:** 在模拟轨迹中，只有极少数点的误差超过安全阈值（如下图所示）。
+![Trajectory Error](./plots/error_over_trajectory_curve.png)
+![error_over_0.05](./plots/large_error_diff_curve_0.05.png)
+
 
 *(Absolute prediction error along a mock trajectory. Red dots indicate rare high-error outliers)*
 
@@ -137,6 +144,14 @@ python infer_v2.py
 
 我们重点关注了误差 \> 0.01 的样本。如下图所示，即使在大误差样本中，预测值（红色虚线）依然紧密跟随真实值（蓝色实线）的趋势，没有出现灾难性的反向预测。
 
+![error_over_0.01](./plots/large_error_diff_curve_0.01.png)
+
+整体的误差分布如下：
+![error_recursive](./plots/scatter_plot.png)
+
+整体的预测值与真实值分布如下：
+
+![distribution](./plots/sdf_kde_distribution.png)
 -----
 
 ## 💡 Why CUDA Graphs?
