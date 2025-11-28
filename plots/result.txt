@@ -1,0 +1,29 @@
+Dataset loaded: 30000 test samples
+⚡ Running MLP inference on test data...
+
+📊 Model Performance Metrics:
+   recall: 0.9999
+   fp_rate: 0.0000
+   mae_boundary: 0.0125
+   mean_error: 0.0142
+   max_error: 0.1052
+✅ SDF and Gradient Slice Plot saved to 'plots/' directory!
+✅ Distribution plots saved to 'plots/' directory!
+
+✅ ROC Curve and Scatter Plot saved to 'plots/' directory!
+
+✅ Large error differences Plot saved to 'plots/' directory!
+
+✅ Large error CURVE Plot saved to 'plots/' directory!
+🚀 Benchmarking MLP inference on device: cuda
+✅ MLP Inference Speed: 0.3373 ms ± 0.3300 ms per sample
+🚀 Benchmarking MuJoCo Ground Truth SDF calculation (5000 samples)...
+MuJoCo Timing: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5000/5000 [00:04<00:00, 1076.64it/s]
+✅ MuJoCo SDF Time (CPU): 0.9286 ms ± 1.7271 ms per sample
+
+=======================================================
+           ⏱️  ACCELERATION COMPARISON
+=======================================================
+MuJoCo SDF Time (CPU): 0.9286 ms/sample
+MLP Inference Time (GPU): 0.3373 ms/sample
+🚀 加速比 (MuJoCo / MLP): 2.75x
